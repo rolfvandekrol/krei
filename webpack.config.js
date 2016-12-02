@@ -19,7 +19,7 @@ var preLoaders = [];
 if (process.env.NODE_ENV != 'production') {
   preLoaders = [
     {
-      test: /\.js$/,
+      test: /\.ts$/,
       loader: "source-map-loader"
     }
   ]
@@ -33,7 +33,7 @@ if (process.env.PORT !== undefined) {
 module.exports = {
   entry: {
     'krei': [
-      './src/index.js'
+      './src/index.ts'
     ]
   },
   output: {
@@ -45,13 +45,13 @@ module.exports = {
     preLoaders: preLoaders,
     loaders: [
       {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015'],
-          plugins: ['transform-object-assign', 'transform-exponentiation-operator']
-        }
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        // exclude: /node_modules/,
+        // query: {
+        //   presets: ['es2015'],
+        //   plugins: ['transform-object-assign', 'transform-exponentiation-operator']
+        // }
       }
     ]
   },
@@ -59,7 +59,7 @@ module.exports = {
     
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.ts'],
   },
   plugins: plugins,
   devServer: {
